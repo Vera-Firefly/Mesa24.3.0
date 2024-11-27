@@ -79,11 +79,24 @@ jobs:
             -Dshared-glapi=false \
             -Dbuildtype=release
           ninja -C "build-android" install
-          cd /tmp/mesa/lib
-          ls -a
-          # cp /tmp/mesa/lib/libOSMesa.so.8.0.0 /tmp/mesa/lib/libOSMesa_8.so
-      - name: Upload libraries
+          mkdir /tmp/mesa/output
+          cp /tmp/mesa/lib/libOSMesa.so /tmp/mesa/output/libOSMesa_8.so
+          cp /tmp/mesa/lib/libxatracker.so /tmp/mesa/output/libxatracker.so
+
+      - name: Upload Mesa libraries
         uses: actions/upload-artifact@v4
         with:
           name: libOSMesa_${{matrix.arch}}
-          path: /tmp/mesa/lib/libOSMesa_8.so
+          path: /tmp/mesa/output/libOSMesa_8.so
+
+      - name: Upload xatracker libraries
+        uses: actions/upload-artifact@v4
+        with:
+          name: libxatracker_${{matrix.arch}}
+          path: /tmp/mesa/output/libxatracker.so
+
+      - name: Upload pkgconfig
+        uses: actions/upload-artifact@v4
+        with:
+          name: pkgconfig_${{matrix.arch}}
+          path: /tmp/mesa/lib/pkgconfig/*
