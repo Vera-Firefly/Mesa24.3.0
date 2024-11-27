@@ -43,7 +43,7 @@
 #include <sys/stat.h>
 #include <sys/sysmacros.h>
 #include <stdarg.h>
-#include <fcntl.h>
+// #include <fcntl.h>
 #include <dlfcn.h>
 #include <dirent.h>
 #include <c11/threads.h>
@@ -773,7 +773,7 @@ realpath(const char *path, char *resolved_path)
 /* Main entrypoint to DRM drivers: the ioctl syscall.  We send all ioctls on
  * our DRM fd to drm_shim_ioctl().
  */
-PUBLIC int
+PUBLIC static int
 ioctl(int fd, unsigned long request, ...)
 {
    init_shim();
