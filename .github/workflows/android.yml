@@ -60,7 +60,7 @@ jobs:
           envsubst <android-${{matrix.arch}} >build-crossfile
           meson setup "build-android" \
             --prefix=/tmp/mesa \
-            --cross-file "../build-crossfile" \
+            --cross-file "build-crossfile" \
             -Dplatforms=android \
             -Dplatform-sdk-version=33 \
             -Dandroid-stub=true \
